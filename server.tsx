@@ -34,9 +34,15 @@ const App = ${App};
 ReactDOM.hydrate(React.createElement(App), document.body);`;
 
 const html =
-  `<html><head><script type="module" src="${browserBundlePath}"></script><style>* { font-family: Helvetica; }</style></head><body><div id="root">${
-    (ReactDOMServer as any).renderToString(<App />)
-  }</div></body></html>`;
+  `<html>
+     <head>
+        <script type="module" src="${browserBundlePath}"></script>
+        <style>* { font-family: Helvetica; }</style>
+     </head>
+     <body>
+       <div id="root">${(ReactDOMServer as any).renderToString(<App />)}</div>
+     </body>
+   </html>`;
 
 app.use(browserBundlePath, (req, res, next) => {
   res.type("application/javascript").send(js);
